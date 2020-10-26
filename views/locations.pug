@@ -1,0 +1,12 @@
+extends layout
+
+
+
+block content
+  a(href="/", title="Go back to the home page", class="navLink") Home
+  h1 Locations
+  div(class="cities")
+    each loc in cities
+      div(class="city")
+        a(href="/locations/" + loc.id, title="List of vendors for this location")=loc.name
+

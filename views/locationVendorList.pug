@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  a(href="/", title="Go back to the home page", class="navLink") Home
+  a(href="/locations", title="Go back to the locations page", class="navLink") Back to Locations
+
+  h1 Locations
+  div(class="vendors")
+    each vend in vendors
+      div(class="vendor")=vend.name
+

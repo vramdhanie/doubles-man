@@ -4,5 +4,14 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.cities {
+  border-top: solid 1px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+.city {
+  margin: 2px 4px;
 }
