@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "migrate": "postgrator --config postgrator-config.js"
+    "migrate": "postgrator --config postgrator-config.js",
+    "postdeploy": "heroku run npm run migrate",
+    "deploy": "git push heroku main"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

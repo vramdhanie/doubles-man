@@ -7,5 +7,7 @@ block content
   h1 Locations
   div(class="vendors")
     each vend in vendors
-      div(class="vendor")=vend.name
+      div(class="vendor")
+        p=vend.name
+        p=vend.description
 
