@@ -1,12 +1,20 @@
 extends layout
 
+block scripts
+  script(src="https://www.google.com/recaptcha/api.js")
+  script(src="/javascripts/recaptcha.js")
+
 block content
   a(href="/", title="Go back to the home page", class="navLink") Home |
   a(href="/locations", title="Go back to the locations page", class="navLink") Locations |
   h1 Add New Location
-  form(action="/locations", method="POST")
+  form(action="/locations", method="POST", id="location_form")
+    input(type="hidden", name="token", id="token")
     label(for="location_name") Location Name
     input(type="text", id="location_name", name="location_name", placeholder="Curepe")
     if error
       div.error=error
-    input(type="submit", value="Save")
+    input(type="submit", value="Save", class="g-recaptcha" 
+        data-sitekey=SITE_KEY 
+        data-callback='onSubmit' 
+        data-action='submit')
