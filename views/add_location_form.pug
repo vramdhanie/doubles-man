@@ -7,4 +7,6 @@ block content
   form(action="/locations", method="POST")
     label(for="location_name") Location Name
     input(type="text", id="location_name", name="location_name", placeholder="Curepe")
+    if error
+      div.error=error
     input(type="submit", value="Save")

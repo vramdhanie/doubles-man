@@ -39,16 +39,35 @@ router.post("/", bodyParser, function (req, res) {
   const { location_name } = req.body;
 
   // validate the location
-  // skipping validation for now
+  // if the location is blank
+  if (!location_name.trim()) {
+    return res.render("add_location_form", { error: "Please enter a name" });
+  }
 
-  // insert new location into the database
+  // get the database connection
   const knex = req.app.get("db");
+
+  // get a count of the number of times
+  // this name is in the database
   return knex
-    .returning("id")
-    .insert({ name: location_name })
-    .into("location")
-    .then((id) => {
-      res.render("add_location_success", { id: id, name: location_name });
+    .count("name")
+    .where("name", location_name)
+    .from("location")
+    .then((result) => {
+      // if the name appears more than 0 times then it is a duplicate
+      if (+result[0].count !== 0) {
+        return res.render("add_location_form", {
+          error: "That location already exists",
+        });
+      }
+      // otherwise insert new location into the database
+      return knex
+        .returning("id")
+        .insert({ name: location_name })
+        .into("location")
+        .then((id) => {
+          res.render("add_location_success", { id: id, name: location_name });
+        });
     });
 });
 
