@@ -65,6 +65,7 @@ router.post("/", bodyParser, function (req, res) {
       if (!location_name.trim()) {
         return res.render("add_location_form", {
           error: "Please enter a name",
+          SITE_KEY: RECAPTCHA_SITE_KEY,
         });
       }
 
