@@ -2,7 +2,10 @@ const express = require("express");
 const { response } = require("../app");
 const router = express.Router();
 const bodyParser = express.urlencoded({ extended: true });
+// we will use this package to make an HTTP call
+// to the reCaptcha API
 const fetch = require("node-fetch");
+//get the environment variables
 const { RECAPTCHA_SECRET, RECAPTCHA_SITE_KEY } = require("../config");
 
 /* Create an end point function for GET /locations */
@@ -21,6 +24,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/form", function (req, res) {
+  // pass the site_key to the form
   res.render("add_location_form", { SITE_KEY: RECAPTCHA_SITE_KEY });
 });
 
@@ -40,12 +44,17 @@ router.post("/", bodyParser, function (req, res) {
   // get the location name from the
   const { location_name, token } = req.body;
 
-  // recaptcha validate
+  // recaptcha validation
+  // this is a call to Google's server
   const url = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${token}`;
   fetch(url, { method: "POST" })
     .then((res) => res.json())
     .then((token_response) => {
+      // check if the response is success and also the score should be
+      // above some threshold, e.g 0.7
+      console.log(token_response);
       if (!token_response.success || token_response.score < 0.7) {
+        // if not show an error message
         res.render("add_location_form", { error: "Sorry, you are not human" });
       }
 
