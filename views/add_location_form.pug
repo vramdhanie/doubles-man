@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  a(href="/", title="Go back to the home page", class="navLink") Home |
+  a(href="/locations", title="Go back to the locations page", class="navLink") Locations |
+  h1 Add New Location
+  form(action="/locations", method="POST")
+    label(for="location_name") Location Name
+    input(type="text", id="location_name", name="location_name", placeholder="Curepe")
+    input(type="submit", value="Save")
