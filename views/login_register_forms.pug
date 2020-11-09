@@ -1,0 +1,48 @@
+
+.container
+  .register(style={"display": !show || show == "register" ? "block": "none"})
+    h2 Sign Up
+    if error && error.captcha
+        div.error=error.captcha
+    form(action="/users/register", method="POST", id="register_form")
+      input(type="hidden", name="token", id="register_token")
+      label(for="email") <span class="required">*</span> Email
+      input(type="text", id="email", name="email", placeholder="me@myserver.com", value=email)
+      if error && error.email
+        div.error=error.email
+      label(for="password") <span class="required">*</span> Password
+      input(type="password", id="password", name="password", value=password)
+      if error && error.password
+        div.error=error.password
+      label(for="repeat_password") <span class="required">*</span> Retype password
+      input(type="password", id="repeat_password", name="repeat_password", value=repeat_password)
+      if error && error.repeat_password
+        div.error=error.repeat_password
+      label(for="name") <span class="required">*</span> Full name
+      input(type="text", id="name", name="name", value=name)
+      if error && error.name
+        div.error=error.name
+      input(type="submit", value="Sign Up", class="g-recaptcha" 
+        data-sitekey=SITE_KEY 
+        data-callback='onSubmitRegister' 
+        data-action='submit')
+      a(href="#" class="login_link") Already have an account?  
+  .login(style={"display": show && show == "login" ? "block": "none"})
+    h2 Login
+    if error && error.captcha
+        div.error=error.captcha
+    form(action="/auth/login", method="POST", id="login_form")
+      input(type="hidden", name="token", id="login_token")
+      label(for="login_email") <span class="required">*</span> Email
+      input(type="text", id="login_email", name="email", placeholder="me@myserver.com", value=email)
+      if error && error.email
+        div.error=error.email
+      label(for="login_password") <span class="required">*</span> Password
+      input(type="password", id="login_password", name="password")
+      if error && error.password
+        div.error=error.password
+      input(type="submit", value="Log in", class="g-recaptcha" 
+        data-sitekey=SITE_KEY 
+        data-callback='onSubmitLogin' 
+        data-action='submit')
+      a(href="#" class="signup_link") Need an account?   

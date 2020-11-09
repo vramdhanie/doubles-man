@@ -1,6 +1,9 @@
+/*Ue a Google font*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap");
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Roboto", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -14,4 +17,100 @@ a {
 
 .city {
   margin: 2px 4px;
+}
+
+/* The main container on the home page*/
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The left side of the home page*/
+.welcome {
+  flex: 2;
+}
+
+/* The right side of the home page*/
+.signin {
+  flex: 1;
+}
+
+/* labels on the form*/
+label {
+  display: block;
+  margin-top: 6px;
+  max-width: 400px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #888888;
+}
+
+/* The input boxes on the form*/
+input {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* The submit buttons*/
+input[type="submit"] {
+  display: block;
+  width: 80%;
+  margin: 6px auto;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  background-color: #3f51b5;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #fff;
+  color: #3f51b5;
+  transition: all 0.5s;
+  border: 1px solid #3f51b5;
+}
+
+/* The box around the forms*/
+.container {
+  text-align: center;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  border-radius: 6px;
+  max-width: 400px;
+}
+
+/*Make the login form invisible to start*/
+.login {
+  display: none;
+}
+
+/*The required * on the labels*/
+.required {
+  color: #ff0000;
+}
+
+/*links at the bottom of the form*/
+.login_link,
+.signup_link {
+  font-size: 0.8rem;
+}
+
+.error {
+  color: #ff0000;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* For any screen bigger than 600px*/
+@media screen and (min-width: 600px) {
+  main {
+    flex-direction: row;
+  }
 }

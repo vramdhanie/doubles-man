@@ -1,16 +1,18 @@
 extends layout
 
-block content
-  a(href="locations", title="View a list of locations", class="navLink") Locations |
-  
-  h1= title
-  p Welcome to #{title}
-  p Pug is not that hard to learn Hello
-  div 
-    p Hello
-    h2 Some more text
-  section
-    h2 Introduction to git
-    p Git is a code management tool that is extremely useful. 
+block scripts
+  script(src="https://www.google.com/recaptcha/api.js")
+  script(src="/javascripts/recaptcha.js")
+  script(src="/javascripts/index.js")
 
+block content
+  a(href="/locations", title="View a list of locations", class="navLink") Locations 
+  
+  main
+    section.welcome
+      h1= title
+      p Welcome to #{title}
+      p Go ahead - eat some doubles!
+    section.signin
+      include login_register_forms.pug
 
