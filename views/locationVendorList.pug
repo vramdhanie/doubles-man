@@ -9,6 +9,9 @@ block content
     each vend in vendors
       div(class="vendor")
         p=vend.name
-        p=vend.description
+        p Description: #{vend.description}
         p=vend.rating
+
+  div
+    a(href="/vendors/addform/" + location, title="Add a Vendor", class="navLink") Add Vendor      
 

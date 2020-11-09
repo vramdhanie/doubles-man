@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  a(href="/") Home
+  h1 Add New Vendor
+  <form action="/vendors" method="post">
+    <label for="vender_name">Name:</label>
+    <input type="text" id="vendor_name" name="vendor_name" value="#{vendor_name}" />
+    <div class="error">#{name_error}</div>
+
+    <label for="vender_description">Description:</label>
+    <input type="text" id="vendor_description" name="vendor_description" value="#{vendor_description}"/>
+
+    <label for="vender_rating">Rating:</label>
+    <input type="text" id="vendor_rating" name="vendor_rating" value="#{vendor_rating}"/>
+    <div class="error">#{rating_error}</div>
+
+    <input type="hidden" name="location" value="#{location}"/>
+    
+    <button type="submit">Save</button>
+  </form>

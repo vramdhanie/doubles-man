@@ -18,6 +18,7 @@ router.get("/", function (req, res) {
     .select("name", "id")
     .from("location")
     .then((data) => {
+      // maybe process the data
       // use the data
       res.render("locations", { cities: data });
     });
@@ -36,7 +37,7 @@ router.get("/:id", function (req, res) {
     .from("vendor")
     .where("location", id)
     .then((data) => {
-      res.render("locationVendorList", { vendors: data });
+      res.render("locationVendorList", { vendors: data, location: id });
     });
 });
 
