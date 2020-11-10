@@ -9,6 +9,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const locationsRouter = require("./routes/locations");
 const vendorsRouter = require("./routes/vendors");
+const authRouter = require("./routes/auth");
 
 const knex = require("knex"); // we are going to use knex in this file
 const { DATABASE_URL } = require("./config");
@@ -36,6 +37,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/locations", locationsRouter);
 app.use("/vendors", vendorsRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

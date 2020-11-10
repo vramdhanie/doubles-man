@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  script.
+    localStorage.setItem("token", "#{authToken}");
+  h1 Success!
+  a(href="/", title="Continue") Continue...

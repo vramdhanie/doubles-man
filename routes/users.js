@@ -94,18 +94,18 @@ router.post("/register", bodyParser, function (req, res) {
           // otherwise insert new user into the database
 
           // encrypt the password
-          const hashedPassword = bcrypt.hash(password, 12);
-
-          return knex
-            .returning("id")
-            .insert({ email, password: hashedPassword, full_name: name })
-            .into("users")
-            .then((id) => {
-              return res.render("register_success", {
-                id: id,
-                name: name,
+          return bcrypt.hash(password, 12).then((hashPassword) => {
+            return knex
+              .returning("id")
+              .insert({ email, password: hashPassword, full_name: name })
+              .into("users")
+              .then((id) => {
+                return res.render("register_success", {
+                  id: id,
+                  name: name,
+                });
               });
-            });
+          });
         });
     });
 });
