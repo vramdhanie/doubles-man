@@ -22,7 +22,7 @@ router.post("/login", bodyParser, (req, res) => {
       // above some threshold, e.g 0.7
       if (!token_response.success || token_response.score < 0.7) {
         // if not show an error message
-        res.render("index", {
+        return res.render("index", {
           error: { captcha: "Sorry, you are not human" },
           SITE_KEY: RECAPTCHA_SITE_KEY,
           show: "login",
@@ -87,7 +87,11 @@ router.post("/login", bodyParser, (req, res) => {
               });
             })
             .then((authToken) => {
-              return res.render("login_success", { authToken });
+              // ADDING THE COOKIE SETTING CODE HERE
+              res.cookie("token", authToken, {
+                expires: new Date(Date.now() + 900000),
+              });
+              return res.render("login_success");
             });
         });
     });

@@ -8,8 +8,10 @@ const fetch = require("node-fetch");
 //get the environment variables
 const { RECAPTCHA_SECRET, RECAPTCHA_SITE_KEY } = require("../config");
 
+const requiredAuth = require("../middleware/authentication");
+
 /* Create an end point function for GET /locations */
-router.get("/", function (req, res) {
+router.get("/", requiredAuth, function (req, res) {
   // 1. query the database for a full list of  locations
   // 2. send those locations to the view
   const knex = req.app.get("db");
